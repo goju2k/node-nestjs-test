@@ -1,10 +1,9 @@
-import { Module } from '@nestjs/common';
-import { RfindApiModule } from 'src/apis/rfind/rfind.module';
+import {Module} from '@nestjs/common'
 import { RetailController } from './controllers/retail.controller';
 import { RetailService } from './services/retail.service';
 
 @Module({
-  imports: [RfindApiModule],
+  imports: [],
   controllers: [RetailController],
   providers: [RetailService],
 })
