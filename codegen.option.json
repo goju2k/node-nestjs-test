@@ -1,0 +1,7 @@
+{
+  "withInterfaces":false,
+  "withNodeImports":false,
+  "withSeparateModelsAndApi":true,
+  "apiPackage":"api",
+  "modelPackage":"model"
+}

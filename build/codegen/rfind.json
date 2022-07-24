@@ -1,0 +1,7072 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Rsquare R.Find KR Api Server",
+    "description": "Api Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://rfind-api-int.rsquare.co.kr",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "www-mbr-public-controller",
+      "description": "고객사이트 공통 api"
+    },
+    {
+      "name": "www-mbr-prd-controller",
+      "description": "사무실"
+    },
+    {
+      "name": "www-mbr-qus-controller",
+      "description": " 문의 내역 "
+    },
+    {
+      "name": "www-mbr-user-controller",
+      "description": "클라이언트 유저 컨트롤러 "
+    },
+    {
+      "name": "Actuator",
+      "description": "Monitor and interact",
+      "externalDocs": {
+        "description": "Spring Boot Actuator Web API Documentation",
+        "url": "https://docs.spring.io/spring-boot/docs/current/actuator-api/html/"
+      }
+    },
+    {
+      "name": "www-proposal-controller",
+      "description": "기안서"
+    }
+  ],
+  "paths": {
+    "/web/www/me/rent-condition": {
+      "put": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 입주조건 수정",
+        "operationId": "patchRentCondition",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPatchPrdCdtDtlIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetPrdCdtDtlOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/prd/interest-tour": {
+      "get": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "로그인된 유저 관심 또는 투어 사무실 조회",
+        "operationId": "getInterestOrTourPrds",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hopeTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagingMyProductOut"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "로그인된 유저의 관심 투어 사무실 등록",
+        "operationId": "postInterestOrTourPrds",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostInterestOrTourPrdIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInterestTourOut"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "로그인된 유저의 관심 투어 사무실 삭제",
+        "operationId": "deleteInterestOrTourPrd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwDeleteInterestOrTourIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteInterestTourOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/leave": {
+      "post": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저 탈퇴",
+        "operationId": "patchLeave",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostLeaveMbrIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetLeaveMbrOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/confirm-email": {
+      "post": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 메일 인증 상태 변경",
+        "operationId": "postConfirmEmail",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/web/www/common/sign-in/www": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "operationId": "signInByWww",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwSignInByWwwOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/qus": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 고객문의하기 ",
+        "operationId": "postWwwQus",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostQusIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetQusOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/qus-prd": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 매입/매각 문의 등록",
+        "operationId": "postWwwQusPrd",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostQusPrdIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetQusOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "빌딩 리스트 조회",
+        "operationId": "getBldList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwGetBldListIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetBldListWithPrdTotalCntOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-by-theme": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "테마별 사무실",
+        "operationId": "getBldListByTheme",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwGetBldListIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetBldListWithPrdTotalCntOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-by-prds": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "빌딩 리스트 조회 by 매물 아이디 리스트",
+        "operationId": "getBldByPrdList",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwGetBldByPrdListIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetBldListWithPrdTotalCntOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-sms-chk": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "아이디로 보냈던 인증번호 확인",
+        "operationId": "getSmsAuthNumById",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwGetSmsChkIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetSmsChkOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-sms-auth": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "문자로 인증번호 id를 보낸다.",
+        "operationId": "postSmsAuthNumber",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostSmsAuthIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetSmsAuthOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-sign-up": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 회원가입 ",
+        "operationId": "postSignUp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostSignUpIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignUpResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-sign-in": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "로그인",
+        "operationId": "postSignIn",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-m-sign-up": {
+      "post": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 모바일 고객사이트 회원가입 ",
+        "operationId": "postMobileSignUp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPostSignUpIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignUpResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/loggers/{name}": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'loggers-name'",
+        "operationId": "loggers-name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'loggers-name'",
+        "operationId": "loggers-name_2",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "TRACE",
+                  "DEBUG",
+                  "INFO",
+                  "WARN",
+                  "ERROR",
+                  "FATAL",
+                  "OFF"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/user-info": {
+      "patch": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 정보 수정",
+        "operationId": "patchInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPatchUserInfoIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetMbrInfoOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/sleep": {
+      "patch": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": " 휴면계정 -> 일반계정으로 전환 ",
+        "operationId": "patchMbrStat",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPatchMbrStatIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetMbrInfoOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/sign-cnt": {
+      "patch": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": " 로그인마다 sign_in_cnt +1 ",
+        "operationId": "patchSignInCnt",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetMbrInfoOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/mob-num": {
+      "patch": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 전화번호 수정",
+        "operationId": "patchMobNum",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WwwPatchMobNumIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetMbrInfoOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-email-auth": {
+      "patch": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 회원 인증정보 확인 후 cognito 및 db 업데이트 ",
+        "operationId": "patchMbrAuthInfo",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/web/www/qus": {
+      "get": {
+        "tags": [
+          "www-mbr-qus-controller"
+        ],
+        "summary": " 로그인된 유저가 등록한 문의 조회 ",
+        "operationId": "getWwwQusPaging",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwAsIsPagingWwwGetAsIsQusOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/qus/qus-proc-stat": {
+      "get": {
+        "tags": [
+          "www-mbr-qus-controller"
+        ],
+        "summary": " 고객문의 답변 가져오기 ",
+        "operationId": "getWwwQusProcStat",
+        "parameters": [
+          {
+            "name": "qusId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetQusProcHstOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/proposal/prd-www": {
+      "get": {
+        "tags": [
+          "www-proposal-controller"
+        ],
+        "summary": " 사무실 기안서 ",
+        "operationId": "getPrdProposal",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/proposal/nmap": {
+      "get": {
+        "tags": [
+          "www-proposal-controller"
+        ],
+        "operationId": "getWwwPrdCompareProposal",
+        "parameters": [
+          {
+            "name": "w",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "h",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "center",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scale",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "markers",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "byte"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/proposal/compare-www": {
+      "get": {
+        "tags": [
+          "www-proposal-controller"
+        ],
+        "summary": " 사무실 비교 기안서 ",
+        "operationId": "getPrdCompareProposal",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/prd/recommend": {
+      "get": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "로그인된 유저에게 추천된 사무실 목록을 조회",
+        "operationId": "getRecommendPrds",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagingMyProductOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/prd/pht": {
+      "get": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "사무실 전체 사진 리스트 조회",
+        "operationId": "getPrdPhtList",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetPrdPht"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/prd/compare": {
+      "get": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "사무실 기본 정보 다건 조회",
+        "operationId": "getPrdsCompare",
+        "parameters": [
+          {
+            "name": "prdIds",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetPrdCompareOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/prd/basic": {
+      "get": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "사무실 기본 정보 단건 조회",
+        "operationId": "getPrdBasicInfo",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetPrdBasicInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/prd/basic-multiple": {
+      "get": {
+        "tags": [
+          "www-mbr-prd-controller"
+        ],
+        "summary": "사무실 기본 정보 다건 조회",
+        "operationId": "getPrdsBasicInfo",
+        "parameters": [
+          {
+            "name": "prdIds",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetPrdBasicInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me": {
+      "get": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 정보 조회",
+        "operationId": "getMbrInfo",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetMbrInfoOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/prd-cdt-dtl": {
+      "get": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 입주조건 정보 조회",
+        "operationId": "getPrdCdtDtl",
+        "parameters": [
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentConditionOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/me/notice": {
+      "get": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저의 알림메세지 조회",
+        "operationId": "getNoticeMessage",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/web/www/me/deals": {
+      "get": {
+        "tags": [
+          "www-mbr-user-controller"
+        ],
+        "summary": "로그인된 유저가 진행중인 딜중에서 담당자 노출이 설정된 딜 목록 조회",
+        "operationId": "getDeals",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/web/www/common/theme/mobile": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "모바일 테마별 사무실 단건 조회",
+        "operationId": "getThemeMobile",
+        "parameters": [
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "area_option",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "py",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "min_monthly_cost",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "max_monthly_cost",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "min_real_area",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "max_real_area",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "completion_year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "time_spent_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "parking_lot_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aircon_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "elevator",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interior",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "floor_option",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetThemeMobileTobe"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/theme-category/mobile": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "모바일 테마별 사무실 항목 조회",
+        "operationId": "getThemeMobileCategory",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetMobileThemeCatOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/rsq-service": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 서비스 제공 고객사 조회 ",
+        "operationId": "getRsqSvcList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetRsqSvcOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/rsq-news": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 뉴스 조회 ",
+        "operationId": "getRsqNewsList",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetRsqNewsOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/qus-category": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "고객문의 항목 조회",
+        "operationId": "getWwwQusCategory",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetQusCategory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/prd-phts": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "매물에 등록된 사진들",
+        "operationId": "getPrdPht",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetPrdPhtOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/prd-mob": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "모바일 검색 사무실 유무 조회용",
+        "operationId": "getPrdInfo",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetPrdOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/notice": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "공지사항",
+        "operationId": "getNotification",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetRsqNoticeOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/geo-substa": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "역 옵션 조회",
+        "operationId": "getSubstaOptions",
+        "parameters": [
+          {
+            "name": "sublineId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetSubstaOptOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/geo-subline": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "호선 옵션 조회",
+        "operationId": "getSublineOptions",
+        "parameters": [
+          {
+            "name": "sublineRegnCd",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetSublineOptOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/geo-sigungu": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "시군구 옵션 조회",
+        "operationId": "getSigunguOptions",
+        "parameters": [
+          {
+            "name": "bjdcdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetAddrOptOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/geo-sido": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "시도 옵션 조회",
+        "operationId": "getSidoOptions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetAddrOptOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/geo-regions": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "지역 옵션 조회",
+        "operationId": "getRegionOptions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetSublineRegionOptOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/exist-bld-prd": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "빌딩에 매물 존재 여부",
+        "operationId": "existBld",
+        "parameters": [
+          {
+            "name": "bldId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetExistPrdOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-prd": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "매물 상세조회",
+        "operationId": "getWwwPrdDetail",
+        "parameters": [
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetBldBaseInfoOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-prd-mob": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "매물 상세조회 모바일용",
+        "operationId": "getWwwPrdDetailMob",
+        "parameters": [
+          {
+            "name": "bldId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exteriorPhtDispYn",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrLev",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetPrdDetailMobOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-office": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "이 빌딩에 등록된 사무실 목록",
+        "operationId": "getBldOffice",
+        "parameters": [
+          {
+            "name": "bldId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetBldUnitOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-near": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "선택한 빌딩과 가까운 빌딩 리스트 조회",
+        "operationId": "getNearPrds",
+        "parameters": [
+          {
+            "name": "bldId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrLev",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetNearPrdsOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-near-mob": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "선택한 빌딩과 가까운 빌딩 리스트 조회 모바일용",
+        "operationId": "getNearPrdsMob",
+        "parameters": [
+          {
+            "name": "bldId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrLev",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetNearPrdsMob"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-main": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "메인 페이지 빌딩 리스트 조회",
+        "operationId": "getBldListForMainPage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WwwGetBldListOut"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-loc": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "빌딩 경위도 정보 리스트 조회",
+        "operationId": "getBldLocList",
+        "parameters": [
+          {
+            "name": "neLat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "neLng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "swLat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "swLng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "themeInqCf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pyInqCf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "intYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "flrOptCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firstFlrYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bsmtYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "minMaintAmt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "maxMaintAmt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "bjdcdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "bjdcdLev",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "substaId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "wlkTimeMin",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "cmplCostrYearIn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "completionYear",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pkltTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "acHeatSplyTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "acSplyTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "heatSplyTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "elvStatCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "listBldId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "minTotalNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxTotalNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "cacheVer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrLevCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WwwGetBldLocListOut"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-category": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "테마별 사무실 항목 조회",
+        "operationId": "getThemeCategory",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeCategories"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/blds-by-theme-mob": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "테마별 사무실 모바일용",
+        "operationId": "getBldListByThemeMob",
+        "parameters": [
+          {
+            "name": "neLat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "neLng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "swLat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "swLng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "themeInqCf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pyInqCf",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "intYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "flrOptCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "firstFlrYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bsmtYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "minMaintAmt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "maxMaintAmt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "bjdcdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "bjdcdLev",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "substaId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "wlkTimeMin",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "cmplCostrYearIn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "completionYear",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pkltTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "acHeatSplyTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "acSplyTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "heatSplyTypeCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "elvStatCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "listBldId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "minTotalNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxTotalNlaPy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "cacheVer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrLevCd",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetThemeMobileToAsis"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/bld": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "빌딩 단건 조회",
+        "operationId": "getBldOne",
+        "parameters": [
+          {
+            "name": "bldId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prdId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exteriorDispYn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mbrLev",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetBldOneOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/bld-keyword-mob": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": "모바일 검색용",
+        "operationId": "getKeyword",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetKeywordOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/web/www/common/acc-email-chk": {
+      "get": {
+        "tags": [
+          "www-mbr-public-controller"
+        ],
+        "summary": " 회원가입시 중복 이메일인지 확인 ",
+        "operationId": "getEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/WwwGetExistEmailOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator root web endpoint",
+        "operationId": "links",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Link"
+                    }
+                  }
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Link"
+                    }
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Link"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/threaddump": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'threaddump'",
+        "operationId": "threaddump",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain;charset=UTF-8": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/scheduledtasks": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'scheduledtasks'",
+        "operationId": "scheduledtasks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/metrics": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'metrics'",
+        "operationId": "metrics",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/metrics/{requiredMetricName}": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'metrics-requiredMetricName'",
+        "operationId": "metrics-requiredMetricName",
+        "parameters": [
+          {
+            "name": "requiredMetricName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/mappings": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'mappings'",
+        "operationId": "mappings",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/loggers": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'loggers'",
+        "operationId": "loggers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/info": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'info'",
+        "operationId": "info",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/heapdump": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'heapdump'",
+        "operationId": "heapdump",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/health": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'health'",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/health/**": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'health-path'",
+        "operationId": "health-path",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/env": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'env'",
+        "operationId": "env",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/env/{toMatch}": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'env-toMatch'",
+        "operationId": "env-toMatch",
+        "parameters": [
+          {
+            "name": "toMatch",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/configprops": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'configprops'",
+        "operationId": "configprops",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/configprops/{prefix}": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'configprops-prefix'",
+        "operationId": "configprops-prefix",
+        "parameters": [
+          {
+            "name": "prefix",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/conditions": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'conditions'",
+        "operationId": "conditions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/caches": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'caches'",
+        "operationId": "caches",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'caches'",
+        "operationId": "caches_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/caches/{cache}": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'caches-cache'",
+        "operationId": "caches-cache",
+        "parameters": [
+          {
+            "name": "cache",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'caches-cache'",
+        "operationId": "caches-cache_2",
+        "parameters": [
+          {
+            "name": "cache",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/beans": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'beans'",
+        "operationId": "beans",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WwwPatchPrdCdtDtlIn": {
+        "required": [
+          "mbrId"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "moveExpectDy": {
+            "type": "string"
+          },
+          "expectRegnCtn": {
+            "type": "string"
+          },
+          "minNlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxNlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "minMonthFixAmt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxMonthFixAmt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cylYnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wlkTimeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pkltTypeCd": {
+            "type": "string"
+          },
+          "splyTypeCd": {
+            "type": "string"
+          },
+          "elvExistCd": {
+            "type": "string"
+          },
+          "intCd": {
+            "type": "string"
+          },
+          "flrOptCd": {
+            "type": "string"
+          },
+          "etcCtn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdCdtDtlOut": {
+        "required": [
+          "createDt",
+          "mbrId"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "createUserId": {
+            "type": "string"
+          },
+          "createDt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateUserId": {
+            "type": "string"
+          },
+          "updateDt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "moveExpectDy": {
+            "type": "string"
+          },
+          "expectRegnCtn": {
+            "type": "string"
+          },
+          "minNlaPy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxNlaPy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minMonthFixAmt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxMonthFixAmt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cylYnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wlkTimeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pkltTypeCd": {
+            "type": "string"
+          },
+          "pkltTypeName": {
+            "type": "string"
+          },
+          "acSplyTypeCd": {
+            "type": "string"
+          },
+          "acSplyTypeName": {
+            "type": "string"
+          },
+          "heatSplyTypeCd": {
+            "type": "string"
+          },
+          "heatSplyTypeName": {
+            "type": "string"
+          },
+          "acHeatCd": {
+            "type": "string"
+          },
+          "elvExistCd": {
+            "type": "string"
+          },
+          "elvExistName": {
+            "type": "string"
+          },
+          "intCd": {
+            "type": "string"
+          },
+          "intName": {
+            "type": "string"
+          },
+          "flrOptCd": {
+            "type": "string"
+          },
+          "flrOptName": {
+            "type": "string"
+          },
+          "etcCtn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPostInterestOrTourPrdIn": {
+        "required": [
+          "hopeTypeCd",
+          "mbrId",
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "hopeTypeCd": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mbrId": {
+            "type": "string"
+          },
+          "createUserId": {
+            "type": "string"
+          }
+        }
+      },
+      "PostInterestTourOut": {
+        "required": [
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "prdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WwwPostLeaveMbrIn": {
+        "required": [
+          "mbrId"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "leaveDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetLeaveMbrOut": {
+        "required": [
+          "createDt",
+          "mbrId"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "createUserId": {
+            "type": "string"
+          },
+          "createDt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "leaveResnCtn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwSignInByWwwOut": {
+        "required": [
+          "customer_name",
+          "email",
+          "jwt",
+          "level"
+        ],
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string"
+          },
+          "customer_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "jwt": {
+            "type": "string"
+          },
+          "office": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "mbrId": {
+            "type": "string"
+          },
+          "receive_news_letter": {
+            "type": "boolean"
+          },
+          "expireDt": {
+            "type": "string"
+          },
+          "expireYn": {
+            "type": "string"
+          },
+          "wakeUp": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPostQusIn": {
+        "required": [
+          "qusCtn",
+          "qusInflRoutCd",
+          "qusTypeCd"
+        ],
+        "type": "object",
+        "properties": {
+          "qusCtn": {
+            "type": "string"
+          },
+          "qusTypeCd": {
+            "type": "string"
+          },
+          "qusInflRoutCd": {
+            "type": "string"
+          },
+          "bldId": {
+            "type": "string"
+          },
+          "mbrId": {
+            "type": "string"
+          },
+          "nonmemYn": {
+            "type": "string"
+          },
+          "qusId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telNum": {
+            "type": "string"
+          },
+          "nonmemName": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetQusOut": {
+        "required": [
+          "created_at",
+          "id",
+          "question",
+          "question_category_name",
+          "qusProcStatCd",
+          "qusTypeCd",
+          "resolved"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "mbrId": {
+            "type": "string"
+          },
+          "createUserId": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateUserId": {
+            "type": "string"
+          },
+          "updateDt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "question": {
+            "type": "string"
+          },
+          "qusTypeCd": {
+            "type": "string"
+          },
+          "question_category_name": {
+            "type": "string"
+          },
+          "qusProcStatCd": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean"
+          },
+          "question_object_id": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPostQusPrdIn": {
+        "required": [
+          "customer_email",
+          "customer_mobile",
+          "customer_name",
+          "description",
+          "desire_price",
+          "inquiry_type",
+          "region",
+          "total_area"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "nonmemYn": {
+            "type": "string"
+          },
+          "inquiry_type": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "total_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "desire_price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "customer_name": {
+            "type": "string"
+          },
+          "customer_mobile": {
+            "type": "string"
+          },
+          "customer_email": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetBldListIn": {
+        "required": [
+          "bjdcdId",
+          "listBldId",
+          "pageNum"
+        ],
+        "type": "object",
+        "properties": {
+          "neLat": {
+            "type": "string"
+          },
+          "neLng": {
+            "type": "string"
+          },
+          "swLat": {
+            "type": "string"
+          },
+          "swLng": {
+            "type": "string"
+          },
+          "themeInqCf": {
+            "type": "string"
+          },
+          "pyInqCf": {
+            "type": "string"
+          },
+          "pageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderBy": {
+            "type": "string"
+          },
+          "mbrId": {
+            "type": "string"
+          },
+          "intYn": {
+            "type": "string"
+          },
+          "flrOptCd": {
+            "type": "string"
+          },
+          "firstFlrYn": {
+            "type": "string"
+          },
+          "bsmtYn": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "minNlaPy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxNlaPy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minMaintAmt": {
+            "type": "number"
+          },
+          "maxMaintAmt": {
+            "type": "number"
+          },
+          "bjdcdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "bjdcdLev": {
+            "type": "string"
+          },
+          "substaId": {
+            "type": "string"
+          },
+          "wlkTimeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cmplCostrYearIn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "completionYear": {
+            "type": "string"
+          },
+          "pkltTypeCd": {
+            "type": "string"
+          },
+          "acHeatSplyTypeCd": {
+            "type": "string"
+          },
+          "acSplyTypeCd": {
+            "type": "string"
+          },
+          "heatSplyTypeCd": {
+            "type": "string"
+          },
+          "elvStatCd": {
+            "type": "string"
+          },
+          "listBldId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "minTotalNlaPy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxTotalNlaPy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cacheVer": {
+            "type": "string"
+          },
+          "mbrLevCd": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetBldListOut": {
+        "required": [
+          "bldAddr",
+          "bldId",
+          "cmplCostrYear",
+          "costrStat",
+          "costrStatCd",
+          "dpstAmt",
+          "elvStat",
+          "exteriorPhtDispYn",
+          "favorYn",
+          "intYn",
+          "maintAmt",
+          "mtnFeeAmt",
+          "mtnFeeStat",
+          "phtCnt",
+          "prdChkDy",
+          "prdCnt",
+          "prdId",
+          "publicScrapYn",
+          "recmdYn",
+          "rentAmt",
+          "sublineName",
+          "substaName",
+          "tourYn",
+          "wlkTimeMin"
+        ],
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "glaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "glaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "nlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "nlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "dpstAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rentAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mtnFeeAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mtnFeeStat": {
+            "type": "string"
+          },
+          "maintAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "prdCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "flrNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "costrStatCd": {
+            "type": "string"
+          },
+          "costrStat": {
+            "type": "string"
+          },
+          "cmplCostrYear": {
+            "type": "string"
+          },
+          "prdChkDy": {
+            "type": "string"
+          },
+          "prdChkErnDd": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sublineName": {
+            "type": "string"
+          },
+          "substaName": {
+            "type": "string"
+          },
+          "wlkTimeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          },
+          "exteriorPht": {
+            "type": "string"
+          },
+          "exteriorPhtDispYn": {
+            "type": "string"
+          },
+          "phtCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "elvStat": {
+            "type": "string"
+          },
+          "intYn": {
+            "type": "string"
+          },
+          "favorYn": {
+            "type": "string"
+          },
+          "tourYn": {
+            "type": "string"
+          },
+          "bldAddr": {
+            "type": "string"
+          },
+          "recmdYn": {
+            "type": "string"
+          },
+          "publicScrapYn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetBldListWithPrdTotalCntOut": {
+        "required": [
+          "bfirstPage",
+          "blastPage",
+          "bldCnt",
+          "endRow",
+          "firstPageNum",
+          "isHasNextPage",
+          "isHasPreviousPage",
+          "lastPageNum",
+          "list",
+          "pageNum",
+          "pageSize",
+          "pages",
+          "prdCnt",
+          "startRow"
+        ],
+        "type": "object",
+        "properties": {
+          "pageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startRow": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endRow": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bldCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prdCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstPageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastPageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bFirstPage": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "bLastPage": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "isHasPreviousPage": {
+            "type": "boolean"
+          },
+          "isHasNextPage": {
+            "type": "boolean"
+          },
+          "orderBy": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetBldListOut"
+            }
+          },
+          "bfirstPage": {
+            "type": "boolean"
+          },
+          "blastPage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WwwGetBldByPrdListIn": {
+        "required": [
+          "pageNum",
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "prdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orderBy": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetSmsChkIn": {
+        "required": [
+          "authCd",
+          "requestId"
+        ],
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string"
+          },
+          "authCd": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetSmsChkOut": {
+        "required": [
+          "confirmId"
+        ],
+        "type": "object",
+        "properties": {
+          "confirmId": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPostSmsAuthIn": {
+        "required": [
+          "telNum"
+        ],
+        "type": "object",
+        "properties": {
+          "smsAuthId": {
+            "type": "string"
+          },
+          "telNum": {
+            "type": "string"
+          },
+          "smsIssResnCd": {
+            "type": "string"
+          },
+          "authNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createUserId": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetSmsAuthOut": {
+        "required": [
+          "requestId"
+        ],
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPostSignUpIn": {
+        "required": [
+          "agreeEmail",
+          "agreePrivate",
+          "agreeService",
+          "company",
+          "customerName",
+          "email",
+          "mobile",
+          "office",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "office": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "agreeEmail": {
+            "type": "boolean"
+          },
+          "agreeService": {
+            "type": "boolean"
+          },
+          "agreePrivate": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CodeDeliveryDetailsType": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "type": "string"
+          },
+          "deliveryMedium": {
+            "type": "string"
+          },
+          "attributeName": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string"
+          }
+        }
+      },
+      "SdkHttpMetadata": {
+        "type": "object",
+        "properties": {
+          "httpHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "httpStatusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allHttpHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SignUpResult": {
+        "type": "object",
+        "properties": {
+          "sdkResponseMetadata": {
+            "$ref": "#/components/schemas/ResponseMetadata"
+          },
+          "sdkHttpMetadata": {
+            "$ref": "#/components/schemas/SdkHttpMetadata"
+          },
+          "userConfirmed": {
+            "type": "boolean"
+          },
+          "codeDeliveryDetails": {
+            "$ref": "#/components/schemas/CodeDeliveryDetailsType"
+          },
+          "userSub": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwDeleteInterestOrTourIn": {
+        "required": [
+          "hopeTypeCd",
+          "mbrId",
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "hopeTypeCd": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DeleteInterestTourOut": {
+        "required": [
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "prdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WwwPatchUserInfoIn": {
+        "required": [
+          "email",
+          "mbrId",
+          "receiveNewsLetter"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "office": {
+            "type": "string"
+          },
+          "receiveNewsLetter": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WwwGetMbrInfoOut": {
+        "required": [
+          "company",
+          "createDt",
+          "customerName",
+          "mbrId"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "customerName": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "mbrLevCd": {
+            "type": "string"
+          },
+          "mbrLevName": {
+            "type": "string"
+          },
+          "mbrStatCd": {
+            "type": "string"
+          },
+          "mbrStatName": {
+            "type": "string"
+          },
+          "createUserId": {
+            "type": "string"
+          },
+          "createDt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updateUserId": {
+            "type": "string"
+          },
+          "updateDt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cusId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "office": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPatchMbrStatIn": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwPatchMobNumIn": {
+        "required": [
+          "company",
+          "email",
+          "mbrId",
+          "mobile",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "mbrId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwAsIsPagingWwwGetAsIsQusOut": {
+        "required": [
+          "data",
+          "limit",
+          "page",
+          "total_count"
+        ],
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetAsIsQusOut"
+            }
+          }
+        }
+      },
+      "WwwGetAsIsQusOut": {
+        "type": "object",
+        "properties": {
+          "answers_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          },
+          "customer_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "question_category_alias": {
+            "type": "string"
+          },
+          "question_category_id": {
+            "type": "string"
+          },
+          "question_category_name": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "question_object": {
+            "type": "string"
+          },
+          "question_object_id": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetQusProcHstOut": {
+        "required": [
+          "answer",
+          "id",
+          "question_id",
+          "resolved"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "question_id": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MyProductOut": {
+        "required": [
+          "product_id"
+        ],
+        "type": "object",
+        "properties": {
+          "aircon_type": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number"
+          },
+          "elevator": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "interior": {
+            "type": "string"
+          },
+          "maintenance_cost": {
+            "type": "number"
+          },
+          "monthly_rent": {
+            "type": "number"
+          },
+          "photo": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "product_status": {
+            "type": "string"
+          },
+          "real_area": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rent_area": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "subway_line": {
+            "type": "string"
+          },
+          "subway_name": {
+            "type": "string"
+          },
+          "time_spent_min": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tour_at": {
+            "type": "string"
+          },
+          "tour_id": {
+            "type": "string"
+          },
+          "unit_name": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rent_location": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "parking_lot_type": {
+            "type": "string"
+          },
+          "favorite_at": {
+            "type": "string"
+          },
+          "building_complex_name": {
+            "type": "string"
+          },
+          "recommendated_at": {
+            "type": "string"
+          },
+          "maintenance_cost_status": {
+            "type": "string"
+          },
+          "check_product_at": {
+            "type": "string"
+          }
+        }
+      },
+      "PagingMyProductOut": {
+        "required": [
+          "bfirstPage",
+          "blastPage",
+          "endRow",
+          "firstPageNum",
+          "isHasNextPage",
+          "isHasPreviousPage",
+          "lastPageNum",
+          "list",
+          "pageNum",
+          "pageSize",
+          "pages",
+          "startRow",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "pageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startRow": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "endRow": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstPageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastPageNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bFirstPage": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "bLastPage": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "isHasPreviousPage": {
+            "type": "boolean"
+          },
+          "isHasNextPage": {
+            "type": "boolean"
+          },
+          "orderBy": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MyProductOut"
+            }
+          },
+          "bfirstPage": {
+            "type": "boolean"
+          },
+          "blastPage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WwwGetPrdPht": {
+        "required": [
+          "convertedPhtLclCd",
+          "dispSeq",
+          "phtId",
+          "phtLclCd",
+          "phtLclName",
+          "topMargin"
+        ],
+        "type": "object",
+        "properties": {
+          "phtId": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "phtLclCd": {
+            "type": "string"
+          },
+          "phtLclName": {
+            "type": "string"
+          },
+          "dispSeq": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phtUrl": {
+            "type": "string"
+          },
+          "convertedPhtLclCd": {
+            "type": "string"
+          },
+          "intYn": {
+            "type": "string"
+          },
+          "topMargin": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WwwGetPrdCompareOut": {
+        "type": "object",
+        "properties": {
+          "prdId": {
+            "type": "string"
+          },
+          "cmplCostrYear": {
+            "type": "string"
+          },
+          "rmdlYear": {
+            "type": "string"
+          },
+          "flrNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "unitCfCd": {
+            "type": "string"
+          },
+          "unitCfName": {
+            "type": "string"
+          },
+          "nlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "nlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "glaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "glaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "dpstAmt": {
+            "type": "number"
+          },
+          "rentAmt": {
+            "type": "number"
+          },
+          "mtnFeeAmt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mtnFeeStatCd": {
+            "type": "string"
+          },
+          "mtnFeeStatName": {
+            "type": "string"
+          },
+          "exclRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "freeParkCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "freeParkDtl": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          },
+          "phtPath": {
+            "type": "string"
+          },
+          "dgName": {
+            "type": "string"
+          },
+          "useAprDay": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdBasicInfo": {
+        "required": [
+          "subInfo"
+        ],
+        "type": "object",
+        "properties": {
+          "prdInfo": {
+            "$ref": "#/components/schemas/WwwGetPrdCompareOut"
+          },
+          "subInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetPrdSubOut"
+            }
+          }
+        }
+      },
+      "WwwGetPrdSubOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "wlkTimeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "substaName": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          },
+          "sublineName": {
+            "type": "string"
+          },
+          "sublineRegnCd": {
+            "type": "string"
+          },
+          "sublineRegnName": {
+            "type": "string"
+          }
+        }
+      },
+      "RentConditionOut": {
+        "type": "object",
+        "properties": {
+          "aircon_type": {
+            "type": "string"
+          },
+          "hope_to_move_to1": {
+            "type": "string"
+          },
+          "within_time_from_subway": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "min_deposit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hope_to_move_at": {
+            "type": "string"
+          },
+          "min_monthly_cost": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parking_lot_type": {
+            "type": "string"
+          },
+          "max_deposit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "etc": {
+            "type": "string"
+          },
+          "floor_option": {
+            "type": "string"
+          },
+          "within_completion_year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "elevator": {
+            "type": "string"
+          },
+          "interior": {
+            "type": "string"
+          },
+          "min_real_area": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "max_monthly_cost": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "max_real_area": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WwwGetThemeMobileTobe": {
+        "required": [
+          "exteriorDispYn",
+          "id",
+          "maintenance_cost_status",
+          "product_count",
+          "product_created_at",
+          "real_area",
+          "rent_area"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number"
+          },
+          "monthly_rent": {
+            "type": "number"
+          },
+          "maintenance_cost": {
+            "type": "number"
+          },
+          "maintenance_cost_status": {
+            "type": "string"
+          },
+          "product_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product_created_at": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "completion_year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "check_product_at": {
+            "type": "string"
+          },
+          "subway_line": {
+            "type": "string"
+          },
+          "subway_name": {
+            "type": "string"
+          },
+          "time_spent_min": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "elvStatCd": {
+            "type": "string"
+          },
+          "intYn": {
+            "type": "string"
+          },
+          "is_constructing": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "address": {
+            "type": "string"
+          },
+          "rent_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "real_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "pkltTypeCd": {
+            "type": "string"
+          },
+          "acSplyTypeCd": {
+            "type": "string"
+          },
+          "heatSplyTypeCd": {
+            "type": "string"
+          },
+          "cmplCostrYearIn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sumNlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "exteriorDispYn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetMobileThemeCatOut": {
+        "required": [
+          "landing",
+          "themes"
+        ],
+        "type": "object",
+        "properties": {
+          "landing": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetMobileThemeOut"
+            }
+          },
+          "themes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetMobileThemeOut"
+            }
+          }
+        }
+      },
+      "WwwGetMobileThemeOut": {
+        "type": "object",
+        "properties": {
+          "item_name": {
+            "type": "string"
+          },
+          "item_desc": {
+            "type": "string"
+          },
+          "search_key": {
+            "type": "string"
+          },
+          "image_path": {
+            "type": "string"
+          },
+          "themeInqCf": {
+            "type": "string"
+          },
+          "bjdcdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WwwGetRsqSvcOut": {
+        "required": [
+          "logo",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "logo": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetRsqNewsOut": {
+        "required": [
+          "content",
+          "date",
+          "link",
+          "media_logo",
+          "media_name",
+          "newsId",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "newsId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "link": {
+            "type": "string"
+          },
+          "media_logo": {
+            "type": "string"
+          },
+          "media_name": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetQusCategory": {
+        "required": [
+          "category_alias",
+          "category_name",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category_alias": {
+            "type": "string"
+          },
+          "category_name": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdPhtOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "flrNum": {
+            "type": "string"
+          },
+          "phtLclCd": {
+            "type": "string"
+          },
+          "phtLclName": {
+            "type": "string"
+          },
+          "phtPath": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdOut": {
+        "type": "object",
+        "properties": {
+          "is_package": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "maintenance_cost_status": {
+            "type": "string"
+          },
+          "rent_ratio": {
+            "type": "number",
+            "format": "double"
+          },
+          "building_id": {
+            "type": "string"
+          },
+          "vacant_status": {
+            "type": "string"
+          },
+          "include_maintenance_cost": {
+            "type": "string"
+          },
+          "cost_of_equipment": {
+            "type": "string"
+          },
+          "free_parking_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rent_location": {
+            "type": "string"
+          },
+          "real_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "checked_at": {
+            "type": "string"
+          },
+          "monthly_rent": {
+            "type": "number"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "interior_room_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parking_desc": {
+            "type": "string"
+          },
+          "product_status": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number"
+          },
+          "interior": {
+            "type": "string"
+          },
+          "available_date": {
+            "type": "string"
+          },
+          "maintenance_cost": {
+            "type": "number"
+          },
+          "building_complex_name": {
+            "type": "string"
+          },
+          "rent_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "cost_of_equipment_desc": {
+            "type": "string"
+          },
+          "standard_price": {
+            "type": "string"
+          },
+          "same_as_typical_floor": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetRsqNoticeOut": {
+        "required": [
+          "description",
+          "end_at",
+          "id",
+          "s3_key_mobile",
+          "s3_key_pc",
+          "start_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "s3_key_pc": {
+            "type": "string"
+          },
+          "s3_key_mobile": {
+            "type": "string"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "WwwGetSubstaOptOut": {
+        "required": [
+          "substaId",
+          "substaName"
+        ],
+        "type": "object",
+        "properties": {
+          "substaId": {
+            "type": "string"
+          },
+          "substaName": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetSublineOptOut": {
+        "required": [
+          "sublineId",
+          "sublineName"
+        ],
+        "type": "object",
+        "properties": {
+          "sublineId": {
+            "type": "string"
+          },
+          "sublineName": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetAddrOptOut": {
+        "required": [
+          "addr",
+          "bjdcdId"
+        ],
+        "type": "object",
+        "properties": {
+          "bjdcdId": {
+            "type": "string"
+          },
+          "addr": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetSublineRegionOptOut": {
+        "required": [
+          "sublineRegnCd",
+          "sublineRegnName"
+        ],
+        "type": "object",
+        "properties": {
+          "sublineRegnCd": {
+            "type": "string"
+          },
+          "sublineRegnName": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetExistPrdOut": {
+        "required": [
+          "exist"
+        ],
+        "type": "object",
+        "properties": {
+          "exist": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WwwGetBldBaseInfoOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "outId": {
+            "type": "string"
+          },
+          "addr": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "unitId": {
+            "type": "string"
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "glaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "glaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "dpstAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "nlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "rentAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mtnFeeAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mtnFeeStatCd": {
+            "type": "string"
+          },
+          "maintAmt": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "dgName": {
+            "type": "string"
+          },
+          "stdFlrGlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "stdFlrGlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "exclRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "stdFlrNlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "stdFlrNlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "useAprDay": {
+            "type": "string"
+          },
+          "mainPurpsCdNm": {
+            "type": "string"
+          },
+          "bldDrcnCd": {
+            "type": "string"
+          },
+          "subAddr": {
+            "type": "string"
+          },
+          "flrInfo": {
+            "type": "string"
+          },
+          "flrCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bsmtCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rmdlYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "substaNearBy": {
+            "type": "string"
+          },
+          "pkltTypeCd": {
+            "type": "string"
+          },
+          "pkltTypeName": {
+            "type": "string"
+          },
+          "splyTypeCd": {
+            "type": "string"
+          },
+          "splyTypeName": {
+            "type": "string"
+          },
+          "allDayOpenTypeCd": {
+            "type": "string"
+          },
+          "allDayOpenTypeName": {
+            "type": "string"
+          },
+          "freeParkCnt": {
+            "type": "string"
+          },
+          "freeParkDtl": {
+            "type": "string"
+          },
+          "wcTypeName": {
+            "type": "string"
+          },
+          "hdyOpenTypeCd": {
+            "type": "string"
+          },
+          "hdyOpenTypeName": {
+            "type": "string"
+          },
+          "paidParkBaseCd": {
+            "type": "string"
+          },
+          "paidParkCnt": {
+            "type": "string"
+          },
+          "elvStatCd": {
+            "type": "string"
+          },
+          "elvStatName": {
+            "type": "string"
+          },
+          "prdChkDy": {
+            "type": "string"
+          },
+          "totalParkingCnt": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          },
+          "recommend_id": {
+            "type": "boolean"
+          },
+          "prdTrStatCd": {
+            "type": "string"
+          },
+          "flrNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitCfCd": {
+            "type": "string"
+          },
+          "unitCfName": {
+            "type": "string"
+          },
+          "otherUnitName": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdDetailMob": {
+        "required": [
+          "photos",
+          "products",
+          "subways"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "aircon_type": {
+            "type": "string"
+          },
+          "basements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "floors": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "building_real_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "building_rent_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "building_real_area_py": {
+            "type": "number",
+            "format": "double"
+          },
+          "building_rent_area_py": {
+            "type": "number",
+            "format": "double"
+          },
+          "check_product_at": {
+            "type": "string"
+          },
+          "dong_code": {
+            "type": "string"
+          },
+          "elevator": {
+            "type": "string"
+          },
+          "free_parking_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "free_parking_desc": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "is_construction": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          },
+          "min_contract_year": {
+            "type": "string"
+          },
+          "open_h24": {
+            "type": "string"
+          },
+          "open_holiday": {
+            "type": "string"
+          },
+          "paid_parking": {
+            "type": "string"
+          },
+          "parking_lot_type": {
+            "type": "string"
+          },
+          "photos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetPrdDetailPhtMob"
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetPrdDetailOfficeMob"
+            }
+          },
+          "recommend_id": {
+            "type": "string"
+          },
+          "subways": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetPrdDetailSubMob"
+            }
+          },
+          "toilet_type": {
+            "type": "string"
+          },
+          "use_apr_day": {
+            "type": "string"
+          },
+          "sub_addr": {
+            "type": "string"
+          },
+          "main_purps_cd_nm": {
+            "type": "string"
+          },
+          "bld_drcn_cd_nm": {
+            "type": "string"
+          },
+          "total_parking_cnt": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdDetailMobOut": {
+        "required": [
+          "productId"
+        ],
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WwwGetPrdDetailMob"
+          }
+        }
+      },
+      "WwwGetPrdDetailOfficeMob": {
+        "type": "object",
+        "properties": {
+          "building_complex_name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number"
+          },
+          "favorite_id": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string"
+          },
+          "interior": {
+            "type": "string"
+          },
+          "maintenance_cost": {
+            "type": "number"
+          },
+          "maintenance_cost_status": {
+            "type": "string"
+          },
+          "monthly_rent": {
+            "type": "number"
+          },
+          "product_photo_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product_status": {
+            "type": "string"
+          },
+          "real_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "rent_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "real_area_py": {
+            "type": "number",
+            "format": "double"
+          },
+          "rent_area_py": {
+            "type": "number",
+            "format": "double"
+          },
+          "rent_location": {
+            "type": "string"
+          },
+          "tour_id": {
+            "type": "string"
+          },
+          "vacant_status": {
+            "type": "string"
+          },
+          "unitCfCd": {
+            "type": "string"
+          },
+          "lmh": {
+            "type": "string"
+          },
+          "contr_imm_yn": {
+            "type": "string"
+          },
+          "unisexWcCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "manWcCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "womanWcCnt": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WwwGetPrdDetailPhtMob": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "rent_location": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdDetailSubMob": {
+        "type": "object",
+        "properties": {
+          "line_name": {
+            "type": "string"
+          },
+          "subway_name": {
+            "type": "string"
+          },
+          "time_spent_min": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "noizy": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WwwGetBldUnitOut": {
+        "required": [
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "prdId": {
+            "type": "string"
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "glaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "glaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "nlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "nlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "dpstAmt": {
+            "type": "number"
+          },
+          "rentAmt": {
+            "type": "number"
+          },
+          "mtnFeeAmt": {
+            "type": "number"
+          },
+          "mtnFeeStatName": {
+            "type": "string"
+          },
+          "maintAmt": {
+            "type": "number"
+          },
+          "intYn": {
+            "type": "string"
+          },
+          "mvinStatCd": {
+            "type": "string"
+          },
+          "mvinStatName": {
+            "type": "string"
+          },
+          "interestYn": {
+            "type": "string"
+          },
+          "tourYn": {
+            "type": "string"
+          },
+          "flrNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitCfCd": {
+            "type": "string"
+          },
+          "unitCfName": {
+            "type": "string"
+          },
+          "otherUnitName": {
+            "type": "string"
+          },
+          "dgName": {
+            "type": "string"
+          },
+          "phtCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lmh": {
+            "type": "string"
+          },
+          "contrImmYn": {
+            "type": "string"
+          },
+          "unisexWcCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "manWcCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "womanWcCnt": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WwwGetNearPrdsOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "prdChkDy": {
+            "type": "string"
+          },
+          "prdChkErnDd": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prdCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sublineName": {
+            "type": "string"
+          },
+          "substaName": {
+            "type": "string"
+          },
+          "wlkTimeMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "addr": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          },
+          "costrStatCd": {
+            "type": "string"
+          },
+          "exteriorPht": {
+            "type": "string"
+          },
+          "unitId": {
+            "type": "string"
+          },
+          "glaM2": {
+            "type": "number"
+          },
+          "glaPy": {
+            "type": "number"
+          },
+          "nlaM2": {
+            "type": "number"
+          },
+          "nlaPy": {
+            "type": "number"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "dpstAmt": {
+            "type": "number"
+          },
+          "rentAmt": {
+            "type": "number"
+          },
+          "mtnFeeStat": {
+            "type": "string"
+          },
+          "mtnFeeAmt": {
+            "type": "number"
+          },
+          "maintAmt": {
+            "type": "number"
+          },
+          "interestYn": {
+            "type": "string"
+          },
+          "tourYn": {
+            "type": "string"
+          },
+          "recmdYn": {
+            "type": "string"
+          },
+          "publicScrapYn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetNearPrdsMob": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "is_favorite": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "maintenance_cost_status": {
+            "type": "string"
+          },
+          "aircon_type": {
+            "type": "string"
+          },
+          "product_created_at": {
+            "type": "string"
+          },
+          "completion_year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "is_constructing": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "subway_name": {
+            "type": "string"
+          },
+          "time_spent_min": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "subway_line": {
+            "type": "string"
+          },
+          "parking_lot_type": {
+            "type": "string"
+          },
+          "real_area": {
+            "type": "number"
+          },
+          "monthly_rent": {
+            "type": "number"
+          },
+          "is_marker": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_tour": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "check_product_at": {
+            "type": "string"
+          },
+          "product_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "photo": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "elevator": {
+            "type": "string"
+          },
+          "deposit": {
+            "type": "number"
+          },
+          "interior": {
+            "type": "string"
+          },
+          "maintenance_cost": {
+            "type": "number"
+          },
+          "rent_area": {
+            "type": "number"
+          },
+          "photo_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recommend_id": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetBldLocListOut": {
+        "required": [
+          "bldId",
+          "prdId"
+        ],
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "string"
+          },
+          "lng": {
+            "type": "string"
+          }
+        }
+      },
+      "ThemeCategories": {
+        "required": [
+          "themeCategories"
+        ],
+        "type": "object",
+        "properties": {
+          "ThemeCategories": {
+            "type": "array",
+            "writeOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/ThemeCategory"
+            }
+          },
+          "themeCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ThemeCategory"
+            }
+          }
+        }
+      },
+      "ThemeCategory": {
+        "required": [
+          "category_name",
+          "themeInqCf"
+        ],
+        "type": "object",
+        "properties": {
+          "category_name": {
+            "type": "string"
+          },
+          "themeInqCf": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ThemeItem"
+            }
+          }
+        }
+      },
+      "ThemeItem": {
+        "required": [
+          "bjdcdId",
+          "item_name"
+        ],
+        "type": "object",
+        "properties": {
+          "bjdcdId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "item_name": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetThemeMobileAsis": {
+        "required": [
+          "address",
+          "exteriorPhtDispYn",
+          "photo_count"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "aircon_type": {
+            "type": "string"
+          },
+          "check_product_at": {
+            "type": "string"
+          },
+          "completion_year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "deposit": {
+            "type": "number"
+          },
+          "elevator": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string"
+          },
+          "interior": {
+            "type": "string"
+          },
+          "is_constructing": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_favorite": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_marker": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "is_tour": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "maintenance_cost": {
+            "type": "number"
+          },
+          "maintenance_cost_status": {
+            "type": "string"
+          },
+          "monthly_rent": {
+            "type": "number"
+          },
+          "parking_lot_type": {
+            "type": "string"
+          },
+          "photo": {
+            "type": "string"
+          },
+          "photo_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product_created_at": {
+            "type": "string"
+          },
+          "product_id": {
+            "type": "string"
+          },
+          "real_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "real_area_py": {
+            "type": "number",
+            "format": "double"
+          },
+          "recommend_id": {
+            "type": "string"
+          },
+          "rent_area": {
+            "type": "number",
+            "format": "double"
+          },
+          "rent_area_py": {
+            "type": "number",
+            "format": "double"
+          },
+          "subway_line": {
+            "type": "string"
+          },
+          "subway_name": {
+            "type": "string"
+          },
+          "time_spent_min": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exteriorPhtDispYn": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetThemeMobileToAsis": {
+        "required": [
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "products_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetThemeMobileAsis"
+            }
+          },
+          "need_update_ratio": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "WwwGetAllBldPhtOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "flrNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phtLclCd": {
+            "type": "string"
+          },
+          "phtLclName": {
+            "type": "string"
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "phtPath": {
+            "type": "string"
+          },
+          "unitCfCd": {
+            "type": "string"
+          },
+          "unitCfCdName": {
+            "type": "string"
+          },
+          "exteriorCaptPsblYn": {
+            "type": "string"
+          },
+          "costrStatCd": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetBldOneOut": {
+        "required": [
+          "bldInfo",
+          "office",
+          "pht",
+          "subways"
+        ],
+        "type": "object",
+        "properties": {
+          "bldInfo": {
+            "$ref": "#/components/schemas/WwwGetPrdBldOut"
+          },
+          "office": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetPrdOfficeOut"
+            }
+          },
+          "pht": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetAllBldPhtOut"
+            }
+          },
+          "subways": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetPrdSubOut"
+            }
+          }
+        }
+      },
+      "WwwGetPrdBldOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "addr": {
+            "type": "string"
+          },
+          "addrS": {
+            "type": "string"
+          },
+          "roadNameAddr": {
+            "type": "string"
+          },
+          "bldName": {
+            "type": "string"
+          },
+          "flrCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bsmtCnt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cmplCostrYear": {
+            "type": "string"
+          },
+          "useAprDay": {
+            "type": "string"
+          },
+          "marinPurpsCdNm": {
+            "type": "string"
+          },
+          "bldDrcnCd": {
+            "type": "string"
+          },
+          "rmdlYear": {
+            "type": "string"
+          },
+          "stdFlrNlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "stdFlrNlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "stdFlrGlaPy": {
+            "type": "number",
+            "format": "double"
+          },
+          "stdFlrGlaM2": {
+            "type": "number",
+            "format": "double"
+          },
+          "acSplyTypeCd": {
+            "type": "string"
+          },
+          "acSplyTypeName": {
+            "type": "string"
+          },
+          "heatSplyTypeCd": {
+            "type": "string"
+          },
+          "heatSplyTypeName": {
+            "type": "string"
+          },
+          "splyTypeCd": {
+            "type": "string"
+          },
+          "splyTypeName": {
+            "type": "string"
+          },
+          "elvStatCd": {
+            "type": "string"
+          },
+          "elvStatName": {
+            "type": "string"
+          },
+          "pkltTypeCd": {
+            "type": "string"
+          },
+          "pkltTypeName": {
+            "type": "string"
+          },
+          "freeParkDtl": {
+            "type": "string"
+          },
+          "freeParkCnt": {
+            "type": "string"
+          },
+          "paidParkBaseCd": {
+            "type": "string"
+          },
+          "paidParkBaseName": {
+            "type": "string"
+          },
+          "paidParkCnt": {
+            "type": "string"
+          },
+          "paidParkDtl": {
+            "type": "string"
+          },
+          "allDayOpenTypeCd": {
+            "type": "string"
+          },
+          "allDayOpenTypeName": {
+            "type": "string"
+          },
+          "hdyOpenTypeCd": {
+            "type": "string"
+          },
+          "hdyOpenTypeName": {
+            "type": "string"
+          },
+          "prdChkDy": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "inDivWcYn": {
+            "type": "string"
+          },
+          "inPublicWcYn": {
+            "type": "string"
+          },
+          "outEdivWcYn": {
+            "type": "string"
+          },
+          "outEpubWcYn": {
+            "type": "string"
+          },
+          "outMdivWcYn": {
+            "type": "string"
+          },
+          "outMpubWcYn": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          },
+          "bldDrcnName": {
+            "type": "string"
+          },
+          "bldKindName": {
+            "type": "string"
+          },
+          "sggCd": {
+            "type": "string"
+          },
+          "bjdCd": {
+            "type": "string"
+          },
+          "bonBunji": {
+            "type": "string"
+          },
+          "buBunji": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetPrdOfficeOut": {
+        "type": "object",
+        "properties": {
+          "bldId": {
+            "type": "string"
+          },
+          "prdId": {
+            "type": "string"
+          },
+          "unitCfCd": {
+            "type": "string"
+          },
+          "unitCfName": {
+            "type": "string"
+          },
+          "mvinStatCd": {
+            "type": "string"
+          },
+          "mvinPslbYm": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "mvinStatName": {
+            "type": "string"
+          },
+          "flrNum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unitName": {
+            "type": "string"
+          },
+          "glaPy": {
+            "type": "number"
+          },
+          "glaM2": {
+            "type": "number"
+          },
+          "nlaPy": {
+            "type": "number"
+          },
+          "nlaM2": {
+            "type": "number"
+          },
+          "dpstAmt": {
+            "type": "number"
+          },
+          "rentAmt": {
+            "type": "number"
+          },
+          "mtnFeeAmt": {
+            "type": "number"
+          },
+          "mtnFeeStatCd": {
+            "type": "string"
+          },
+          "mtnFeeStatName": {
+            "type": "string"
+          },
+          "intYn": {
+            "type": "string"
+          },
+          "createDt": {
+            "type": "string"
+          },
+          "dgName": {
+            "type": "string"
+          },
+          "prdTrStatCd": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetKeywordOut": {
+        "required": [
+          "keyword",
+          "results"
+        ],
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WwwGetKeywordResult"
+            }
+          }
+        }
+      },
+      "WwwGetKeywordResult": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "lineName": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "placeName": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "WwwGetExistEmailOut": {
+        "required": [
+          "exist_email"
+        ],
+        "type": "object",
+        "properties": {
+          "exist_email": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "templated": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
