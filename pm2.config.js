@@ -2,8 +2,14 @@ module.exports = {
   apps:[{
     name:'bff',
     script:'./dist/main.js',
-    instances: 0,
+    instances: 2,
     exec_mode: 'cluster',
-    node_args: '--max-old-space-size=512'
+    node_args: '--max-old-space-size=128',
+    env: {
+        NODE_ENV: 'development',
+    },
+    env_production: {
+        NODE_ENV: 'production',
+    }
   }]
 }
